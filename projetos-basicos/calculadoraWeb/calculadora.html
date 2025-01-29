@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .info {
+            width: 200px;
+            justify-content: center;
+            margin: 10px auto;  
+            border: 1px, solid, rgb(33, 152, 189);
+            width: 400px;
+            height: 80px;
+            border-radius: 15px;
+            background-color: white;
+        }
+        .info p {
+            font-size: 25px;
+            text-align: right;
+            color: black;
+            padding: 5px;
+        }
+        .linha {
+            display: flex;
+            justify-content: center;
+            margin: 10px, auto;
+            padding: 10px;
+            padding-left: 10px;
+        }
+        .linha button {
+            width: 100px;
+            height: 100px;
+            font-size: 20px;
+            padding-left: 5px;
+            margin: 5px;
+            border-radius: 15px;
+            border: 1px solid rgb(33, 152, 189);
+            background: radial-gradient(circle, white 0%, gray 100%);
+
+        }
+        .linha button:hover {
+             zoom: 115%;
+             background: white;
+        }
+        .info #operacao {
+            display: none;
+        }
+        .calculadora {
+            width: 420px;
+            height: 650px;
+            border: 3px solid #000;
+            border-radius: 25px;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+    </style>
+    <script>
+            function pegarValor() {
+                let infoVisual = document.getElementById('info-digitada');
+                let info = infoVisual.innerHTML;
+                return info;
+            }
+            function adicionarValor(botao){
+                let infoVisual = document.getElementById('info-digitada');
+                infoVisual.innerHTML += botao.innerHTML;
+            }
+            function Limpar() {
+                let infovisual = document.getElementById('info-digitada');
+                infovisual.innerHTML = '';
+            } 
+            function somar() {
+                texto = pegarValor();
+                infos = texto.split('+');
+                let infoVisual = document.getElementById('info-digitada');
+                infoVisual.innerHTML = parseFloat(infos[0]) + parseFloat(infos[1]);
+                let operacao = document.getElementById('operacao');
+                operacao.innerHTML = '+';
+            }
+            function calcular() {
+                operacao = document.getElementById('operacao').innerHTML;
+                console.log(operacao);
+                if (operacao == '+') {
+                    console.log("Teste")
+                    somar();
+                }
+                if (operacao == '-') {
+                    subtrair();
+                }
+                if (operacao == '*') {
+                    multiplicar();
+                }
+                if (operacao == '/') {
+                    dividir();
+                }
+            }
+            function soma(botao) {
+                adicionarValor(botao);
+                let manip = document.getElementById('operacao');
+                manip.innerHTML = '+';
+            }
+            function subtracao(botao) {
+                adicionarValor(botao);
+                let manip = document.getElementById('operacao');
+                manip.innerHTML = '-';
+            }
+            function multiplicacao(botao) {
+                adicionarValor(botao);
+                let manip = document.getElementById('operacao');
+                manip.innerHTML = '*';
+            }
+            function divisao(botao) {
+                adicionarValor(botao);
+                let manip = document.getElementById('operacao');
+                manip.innerHTML = '/';
+            }
+            function subtrair() {
+                texto = pegarValor();
+                infos = texto.split('-');
+                let infoVisual = document.getElementById('info-digitada');
+                infoVisual.innerHTML = parseFloat(infos[0]) - parseFloat(infos[1]);
+                let operacao = document.getElementById('operacao');
+                operacao.innerHTML = '-';
+            }
+            function multiplicar() {
+                texto = pegarValor();
+                infos = texto.split('*');
+                let infoVisual = document.getElementById('info-digitada');
+                infoVisual.innerHTML = parseFloat(infos[0]) * parseFloat(infos[1]);
+                let operacao = document.getElementById('operacao');
+                operacao.innerHTML = '*';
+            }
+            function dividir() {
+                texto = pegarValor();
+                infos = texto.split('/');
+                let infoVisual = document.getElementById('info-digitada');
+                infoVisual.innerHTML = parseFloat(infos[0]) / parseFloat(infos[1]);
+                let operacao = document.getElementById('operacao');
+                operacao.innerHTML = '/';
+            }
+
+    </script>
+</head>
+
+<body>
+    <div class="calculadora">
+    <div class="info">
+        <p id="info-digitada"></p>
+        <p id="operacao">ds</p>
+    </div>
+    <div class="linha">
+        <button onclick="adicionarValor(this)">1</button>
+        <button onclick="adicionarValor(this)">2</button>
+        <button onclick="adicionarValor(this)">3</button>
+        <button onclick="soma(this)">+</button>
+    </div>
+    <div class="linha">
+        <button onclick="adicionarValor(this)">4</button>
+        <button onclick="adicionarValor(this)">5</button>
+        <button onclick="adicionarValor(this)">6</button>
+        <button onclick="subtracao(this)">-</button>
+    </div>
+    <div class="linha">
+        <button onclick="adicionarValor(this)">7</button>
+        <button onclick="adicionarValor(this)">8</button>
+        <button onclick="adicionarValor(this)">9</button>
+        <button onclick="multiplicacao(this)">*</button>
+    </div>
+    <div class="linha">
+        <button onclick="adicionarValor(this)">0</button>
+        <button onclick="Limpar()">Limpar</button>
+        <button onclick="calcular()">Go</button>
+        <button onclick="divisao(this)">/</button>
+    </div>
+    </div>
+</body>
+</html>
